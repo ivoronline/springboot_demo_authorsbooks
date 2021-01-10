@@ -1,24 +1,21 @@
 package com.ivoronline.springboot_demo_authorsbooks.controllers;
 
 import com.ivoronline.springboot_demo_authorsbooks.entities.Author;
-import com.ivoronline.springboot_demo_authorsbooks.entities.Book;
-import com.ivoronline.springboot_demo_authorsbooks.repositories.AuthorRepository;
+import com.ivoronline.springboot_demo_authorsbooks.services.ComboServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Optional;
-import java.util.Set;
-
 @Controller
 public class ComboController {
 
   //======================================================================
-  // REPOSITORIES
+  // SERVICES
   //======================================================================
-  @Autowired AuthorRepository authorRepository;
+  @Autowired
+  ComboServiceInterface comboService;
 
   //======================================================================
   // METHOD: GET BOOKS FORM
@@ -35,16 +32,12 @@ public class ComboController {
   @RequestMapping("/GetBooks")
   public String getBooks(@RequestParam Integer authorId) {
 
-    //GET AUTHOR & BOOKS
-    Optional<Author> authorOptional = authorRepository.findById(authorId);
-    Author           author         = authorOptional.get();
-    Set<Book>        books          = author.getBooks();
+    //CREATE AUTHOR
+    Author author = new Author();
+    author.setId(authorId);
 
-    //DISPLAY BOOKS
-    String result = "<h2> Books by " + author.getName() + "</h2>";
-    for(Book book : books) {
-      result += book.getTitle() + "<br>";
-    }
+    //CALL SERVICE (BUSINESS LOGIC)
+    String result = comboService.getBooks(author);
 
     //RETURN
     return result;
