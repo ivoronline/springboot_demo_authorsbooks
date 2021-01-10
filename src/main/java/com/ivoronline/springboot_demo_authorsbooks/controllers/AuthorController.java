@@ -1,7 +1,7 @@
 package com.ivoronline.springboot_demo_authorsbooks.controllers;
 
 import com.ivoronline.springboot_demo_authorsbooks.entities.Author;
-import com.ivoronline.springboot_demo_authorsbooks.repositories.AuthorRepository;
+import com.ivoronline.springboot_demo_authorsbooks.services.AuthorServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,9 +14,9 @@ import java.sql.Date;
 public class AuthorController {
 
   //======================================================================
-  // REPOSITORIES
+  // SERVICES
   //======================================================================
-  @Autowired AuthorRepository authorRepository;
+  @Autowired AuthorServiceInterface authorService;
 
   //======================================================================
   // METHOD: ADD AUTHOR FORM
@@ -31,7 +31,7 @@ public class AuthorController {
   //======================================================================
   @ResponseBody
   @RequestMapping("/AddAuthor")
-  public String addAuthor(@RequestParam String name,@RequestParam Integer age,@RequestParam Date birthday) {
+  public String addAuthor(@RequestParam String name, @RequestParam Integer age, @RequestParam Date birthday) {
 
     //CREATE AUTHOR
     Author author = new Author();
@@ -39,11 +39,11 @@ public class AuthorController {
     author.setAge     (age);
     author.setBirthday(birthday);
 
-    //STORE AUTHOR
-    authorRepository.save(author);
+    //CALL SERVICE (BUSINESS LOGIC)
+    String result = authorService.addAuthor(author);
 
     //RETURN
-    return "Author added to DB";
+    return result;
 
   }
 
