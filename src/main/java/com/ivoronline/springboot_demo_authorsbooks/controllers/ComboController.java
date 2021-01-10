@@ -1,46 +1,43 @@
 package com.ivoronline.springboot_demo_authorsbooks.controllers;
 
 import com.ivoronline.springboot_demo_authorsbooks.entities.Author;
-import com.ivoronline.springboot_demo_authorsbooks.services.AuthorServiceInterface;
+import com.ivoronline.springboot_demo_authorsbooks.services.ComboServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.sql.Date;
 
 @Controller
-public class AuthorController {
+public class ComboController {
 
   //======================================================================
   // SERVICES
   //======================================================================
-  @Autowired AuthorServiceInterface authorService;
+  @Autowired
+  ComboServiceInterface comboService;
 
   //======================================================================
-  // METHOD: ADD AUTHOR FORM
+  // METHOD: GET BOOKS FORM
   //======================================================================
-  @RequestMapping("/AddAuthorForm")
-  public String addAuthorForm() {
-    return "AddAuthorForm";
+  @RequestMapping("/GetBooksForm")
+  public String getBooksForm() {
+    return "GetBooksForm";
   }
 
   //======================================================================
-  // METHOD: ADD AUTHOR
+  // METHOD: GET BOOKS
   //======================================================================
   @ResponseBody
-  @RequestMapping("/AddAuthor")
-  public String addAuthor(@RequestParam String name, @RequestParam Integer age, @RequestParam Date birthday) {
+  @RequestMapping("/GetBooks")
+  public String getBooks(@RequestParam Integer authorId) {
 
     //CREATE AUTHOR
     Author author = new Author();
-    author.setName    (name);
-    author.setAge     (age);
-    author.setBirthday(birthday);
+    author.setId(authorId);
 
     //CALL SERVICE (BUSINESS LOGIC)
-    String result = authorService.addAuthor(author);
+    String result = comboService.getBooks(author);
 
     //RETURN
     return result;
