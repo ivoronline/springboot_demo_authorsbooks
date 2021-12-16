@@ -13,37 +13,39 @@ import java.sql.Date;
 @Controller
 public class AuthorController {
 
-  //======================================================================
-  // REPOSITORIES
-  //======================================================================
+  //PROPERTIES
   @Autowired AuthorRepository authorRepository;
 
   //======================================================================
-  // METHOD: ADD AUTHOR FORM
+  // ADD AUTHOR FORM
   //======================================================================
-  @RequestMapping("/AddAuthorForm")
-  public String addAuthorForm() {
+  @RequestMapping("AddAuthorForm")
+  String addAuthorForm() {
     return "AddAuthorForm";
   }
 
   //======================================================================
-  // METHOD: ADD AUTHOR
+  // ADD AUTHOR
   //======================================================================
   @ResponseBody
-  @RequestMapping("/AddAuthor")
-  public String addAuthor(@RequestParam String name,@RequestParam Integer age,@RequestParam Date birthday) {
+  @RequestMapping("AddAuthor")
+  String addAuthor(
+      @RequestParam String  name,
+      @RequestParam Integer age,
+      @RequestParam Date    birthday
+  ) {
 
     //CREATE AUTHOR
     Author author = new Author();
-    author.setName    (name);
-    author.setAge     (age);
-    author.setBirthday(birthday);
+           author.setName    (name);
+           author.setAge     (age);
+           author.setBirthday(birthday);
 
-    //STORE AUTHOR
+    //SAVE AUTHOR
     authorRepository.save(author);
 
     //RETURN
-    return "Author added to DB";
+    return "Author added under ID: " + author.getId();
 
   }
 
