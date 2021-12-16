@@ -27,11 +27,15 @@ public class BookController {
   //======================================================================
   @ResponseBody
   @RequestMapping("AddBook")
-  String addBook(@RequestParam String title) {
+  String addBook(
+      @RequestParam String  title,
+      @RequestParam Integer authorId
+  ) {
 
     //CREATE BOOK
     Book book = new Book();
          book.setTitle(title);
+         book.setAuthorId(authorId);
 
     //SAVE BOOK
     bookRepository.save(book);
