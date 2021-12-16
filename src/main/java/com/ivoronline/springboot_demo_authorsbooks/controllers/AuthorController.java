@@ -13,31 +13,33 @@ import java.sql.Date;
 @Controller
 public class AuthorController {
 
-  //======================================================================
-  // SERVICES
-  //======================================================================
+  //PROPERTIES
   @Autowired AuthorServiceInterface authorService;
 
   //======================================================================
-  // METHOD: ADD AUTHOR FORM
+  // ADD AUTHOR FORM
   //======================================================================
-  @RequestMapping("/AddAuthorForm")
+  @RequestMapping("AddAuthorForm")
   public String addAuthorForm() {
     return "AddAuthorForm";
   }
 
   //======================================================================
-  // METHOD: ADD AUTHOR
+  // ADD AUTHOR
   //======================================================================
   @ResponseBody
-  @RequestMapping("/AddAuthor")
-  public String addAuthor(@RequestParam String name, @RequestParam Integer age, @RequestParam Date birthday) {
+  @RequestMapping("AddAuthor")
+  String addAuthor(
+      @RequestParam String  name,
+      @RequestParam Integer age,
+      @RequestParam Date    birthday
+  ) {
 
     //CREATE AUTHOR
     Author author = new Author();
-    author.setName    (name);
-    author.setAge     (age);
-    author.setBirthday(birthday);
+           author.setName    (name);
+           author.setAge     (age);
+           author.setBirthday(birthday);
 
     //CALL SERVICE (BUSINESS LOGIC)
     String result = authorService.addAuthor(author);

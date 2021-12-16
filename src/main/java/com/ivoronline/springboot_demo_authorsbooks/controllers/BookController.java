@@ -12,30 +12,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BookController {
 
-  //======================================================================
-  // SERVICES
-  //======================================================================
+  //PROPERTIES
   @Autowired BookServiceInterface bookService;
 
   //======================================================================
-  // METHOD: ADD BOOK FORM
+  // ADD BOOK FORM
   //======================================================================
-  @RequestMapping("/AddBookForm")
-  public String addBookForm() {
+  @RequestMapping("AddBookForm")
+  String addBookForm() {
     return "AddBookForm";
   }
 
   //======================================================================
-  // METHOD: ADD BOOK
+  // ADD BOOK
   //======================================================================
   @ResponseBody
-  @RequestMapping("/AddBook")
-  public String addBook(@RequestParam String title, @RequestParam Integer authorId) {
+  @RequestMapping("AddBook")
+  String addBook(
+      @RequestParam String title,
+      @RequestParam Integer authorId
+  ) {
 
     //CREATE BOOK
     Book book = new Book();
-    book.setTitle   (title);
-    book.setAuthorId(authorId);
+         book.setTitle   (title);
+         book.setAuthorId(authorId);
 
     //STORE BOOK
     bookService.addBook(book);
