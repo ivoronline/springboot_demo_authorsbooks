@@ -15,7 +15,7 @@ public class BookController {
   @Autowired BookRepository bookRepository;
 
   //======================================================================
-  // METHOD: ADD BOOK FORM
+  // ADD BOOK FORM
   //======================================================================
   @RequestMapping("AddBookForm")
   String addBookForm() {
@@ -23,15 +23,20 @@ public class BookController {
   }
 
   //======================================================================
-  // METHOD: ADD BOOK
+  // ADD BOOK
   //======================================================================
   @ResponseBody
   @RequestMapping("AddBook")
-  String addBook(@RequestParam String title) {
+  String addBook(
+      @RequestParam String title,
+      @RequestParam Integer authorId
+
+  ) {
 
     //CREATE BOOK
     Book book = new Book();
          book.setTitle(title);
+         book.setAuthorId(authorId);
 
     //STORE BOOK
     bookRepository.save(book);
