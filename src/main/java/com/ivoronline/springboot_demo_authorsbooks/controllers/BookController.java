@@ -11,36 +11,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BookController {
 
-  //======================================================================
-  // REPOSITORIES
-  //======================================================================
+  //PROPERTIES
   @Autowired BookRepository bookRepository;
 
   //======================================================================
-  // METHOD: ADD BOOK FORM
+  // ADD BOOK FORM
   //======================================================================
-  @RequestMapping("/AddBookForm")
-  public String addBookForm() {
+  @RequestMapping("AddBookForm")
+  String addBookForm() {
     return "AddBookForm";
   }
 
   //======================================================================
-  // METHOD: ADD BOOK
+  // ADD BOOK
   //======================================================================
   @ResponseBody
-  @RequestMapping("/AddBook")
-  public String addBook(@RequestParam String title) {
+  @RequestMapping("AddBook")
+  String addBook(
+      @RequestParam String  title,
+      @RequestParam Integer authorId
+  ) {
 
     //CREATE BOOK
     Book book = new Book();
     book.setTitle(title);
+    book.setAuthorId(authorId);
 
-    //STORE BOOK
+    //SAVE BOOK
     bookRepository.save(book);
 
     //RETURN
     return "Book added to DB";
 
   }
+
 
 }
