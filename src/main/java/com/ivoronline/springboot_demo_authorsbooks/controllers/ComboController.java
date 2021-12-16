@@ -15,25 +15,23 @@ import java.util.Set;
 @Controller
 public class ComboController {
 
-  //======================================================================
-  // REPOSITORIES
-  //======================================================================
+  //PROPERTIES
   @Autowired AuthorRepository authorRepository;
 
   //======================================================================
-  // METHOD: GET BOOKS FORM
+  // GET BOOKS FORM
   //======================================================================
-  @RequestMapping("/GetBooksForm")
-  public String getBooksForm() {
+  @RequestMapping("GetBooksForm")
+  String getBooksForm() {
     return "GetBooksForm";
   }
 
   //======================================================================
-  // METHOD: GET BOOKS
+  // GET BOOKS
   //======================================================================
   @ResponseBody
-  @RequestMapping("/GetBooks")
-  public String getBooks(@RequestParam Integer authorId) {
+  @RequestMapping("GetBooks")
+  String getBooks(@RequestParam Integer authorId) {
 
     //GET AUTHOR & BOOKS
     Optional<Author> authorOptional = authorRepository.findById(authorId);

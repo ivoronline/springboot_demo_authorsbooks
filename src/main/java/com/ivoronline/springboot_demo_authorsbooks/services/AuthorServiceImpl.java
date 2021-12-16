@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorServiceImpl implements AuthorServiceInterface {
 
-  @Autowired
-  AuthorRepository authorRepository;
+  //PROPERTIES
+  @Autowired AuthorRepository authorRepository;
 
+  //======================================================================
+  // ADD AUTHOR
+  //======================================================================
   @Override
   public String addAuthor(Author author) {
 
@@ -18,7 +21,7 @@ public class AuthorServiceImpl implements AuthorServiceInterface {
     authorRepository.save(author);
 
     //RETURN
-    return "Author added to DB";
+    return "Author added under ID: " + author.getId();
 
   }
 
