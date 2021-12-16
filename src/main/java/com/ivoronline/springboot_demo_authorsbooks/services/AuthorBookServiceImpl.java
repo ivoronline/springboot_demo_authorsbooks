@@ -12,20 +12,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorBookServiceImpl implements AuthorBookServiceInterface {
 
-  @Autowired
-  AuthorRepository authorRepository;
+  //PROPERTIES
+  @Autowired AuthorRepository authorRepository;
 
+  //======================================================================
+  // ADD AUTHOR BOOK
+  //======================================================================
   @Override
   public AuthorBookDTO addAuthorBook(AuthorBookDTO authorBookDTO) {
 
     //INSTANTIATE MODEL MAPPER
     ModelMapper modelMapper = new ModelMapper();
-    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+                modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
     //CONVERT DTOs TO ENTITIES
     Book   book   = modelMapper.map(authorBookDTO, Book  .class);
     Author author = modelMapper.map(authorBookDTO, Author.class);
-    author.getBooks().add(book);
+           author.getBooks().add(book);
 
     //SAVE AUTHOR & BOOK
     authorRepository.save(author);

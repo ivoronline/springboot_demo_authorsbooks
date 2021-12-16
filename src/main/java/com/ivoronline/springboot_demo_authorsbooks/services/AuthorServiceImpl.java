@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorServiceImpl implements AuthorServiceInterface {
 
-  @Autowired
-  AuthorRepository authorRepository;
+  //PROPERTIES
+  @Autowired AuthorRepository authorRepository;
 
+  //======================================================================
+  // ADD AUTHOR
+  //======================================================================
   @Override
   public String addAuthor(Author author) {
 

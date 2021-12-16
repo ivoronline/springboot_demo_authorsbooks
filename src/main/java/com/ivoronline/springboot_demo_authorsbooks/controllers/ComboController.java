@@ -11,30 +11,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ComboController {
 
-  //======================================================================
-  // SERVICES
-  //======================================================================
-  @Autowired
-  ComboServiceInterface comboService;
+  //PROPERTIES
+  @Autowired ComboServiceInterface comboService;
 
   //======================================================================
-  // METHOD: GET BOOKS FORM
+  // GET BOOKS FORM
   //======================================================================
-  @RequestMapping("/GetBooksForm")
-  public String getBooksForm() {
+  @RequestMapping("GetBooksForm")
+  String getBooksForm() {
     return "GetBooksForm";
   }
 
   //======================================================================
-  // METHOD: GET BOOKS
+  // GET BOOKS
   //======================================================================
   @ResponseBody
-  @RequestMapping("/GetBooks")
-  public String getBooks(@RequestParam Integer authorId) {
+  @RequestMapping("GetBooks")
+  String getBooks(@RequestParam Integer authorId) {
 
     //CREATE AUTHOR
     Author author = new Author();
-    author.setId(authorId);
+           author.setId(authorId);
 
     //CALL SERVICE (BUSINESS LOGIC)
     String result = comboService.getBooks(author);

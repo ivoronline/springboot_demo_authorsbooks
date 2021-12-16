@@ -12,9 +12,13 @@ import java.util.Set;
 @Service
 public class ComboServiceImpl implements ComboServiceInterface {
 
-  @Autowired
-  AuthorRepository authorRepository;
+  //PROPERTIES
+  @Autowired AuthorRepository authorRepository;
 
+  //======================================================================
+  // GET BOOKS
+  //======================================================================
+  @Override
   public String getBooks(Author author) {
 
     //GET AUTHOR & BOOKS

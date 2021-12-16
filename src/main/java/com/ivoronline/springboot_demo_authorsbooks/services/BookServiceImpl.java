@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookServiceImpl implements BookServiceInterface {
 
-  @Autowired
-  BookRepository bookRepository;
+  //PROPERTIES
+  @Autowired BookRepository bookRepository;
 
+  //======================================================================
+  // ADD BOOK
+  //======================================================================
+  @Override
   public String addBook(Book book) {
 
     //STORE AUTHOR (BUSINESS LOGIC)
