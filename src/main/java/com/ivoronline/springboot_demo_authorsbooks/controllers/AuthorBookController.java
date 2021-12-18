@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AuthorBookController {
 
-  //======================================================================
-  // SERVICES
-  //======================================================================
+  //PROPERTIES
   @Autowired AuthorBookServiceInterface authorBookServiceInterface;
 
   //======================================================================
-  // METHOD: ADD AUTHOR BOOK
+  // ADD AUTHOR BOOK
   //======================================================================
   @ResponseBody
-  @RequestMapping("addAuthorBook")
-  public AuthorBookDTO addAuthorBook(@RequestBody AuthorBookDTO authorBookDTO) {
+  @RequestMapping("AddAuthorBook")
+  AuthorBookDTO addAuthorBook(@RequestBody AuthorBookDTO authorBookDTO) {
 
     //CALL SERVICE
     AuthorBookDTO result = authorBookServiceInterface.addAuthorBook(authorBookDTO);
