@@ -3,12 +3,12 @@ package com.ivoronline.springboot_demo_authorsbooks.controllers;
 import com.ivoronline.springboot_demo_authorsbooks.DTO.AuthorBookDTO;
 import com.ivoronline.springboot_demo_authorsbooks.services.AuthorBookServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class AuthorBookController {
 
   //PROPERTIES
@@ -17,7 +17,6 @@ public class AuthorBookController {
   //======================================================================
   // ADD AUTHOR BOOK
   //======================================================================
-  @ResponseBody
   @RequestMapping("AddAuthorBook")
   AuthorBookDTO addAuthorBook(@RequestBody AuthorBookDTO authorBookDTO) {
 
